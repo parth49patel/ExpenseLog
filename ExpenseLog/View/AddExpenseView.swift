@@ -12,7 +12,7 @@ struct AddExpenseView: View {
     
     @State var name: String = ""
     @State var note: String? = nil
-    @State var amount: Double = 0.00
+    @State var amount: Double = 0
     @State var date: Date = .now
     @State var category: ExpenseCategory = .other
     @State var paymentType: PaymentType = .other
@@ -33,7 +33,7 @@ struct AddExpenseView: View {
                 Section {
                     HStack {
                         Text("Amount: ")
-                        TextField("0.00", value: $amount, format: .number)
+                        TextField("", value: $amount, format: .number)
                             .keyboardType(.decimalPad)
                     }
                 }

@@ -11,9 +11,11 @@ import SwiftData
 struct ExpenseDetailView: View {
     
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
+    
     @Query var expenses: [ExpenseModel]
     let expense: ExpenseModel
-    @Environment(\.dismiss) var dismiss
+    @State private var showEditView: Bool = false
     
     var body: some View {
         ScrollView {

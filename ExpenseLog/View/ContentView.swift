@@ -36,9 +36,20 @@ struct ContentView: View {
                                 .font(.system(size: 25, weight: .semibold, design: .default))
                         }
                     }
-                    
+                    .swipeActions(edge: .trailing) {
+                        Button {
+                            
+                        } label: {
+                            
+                        }
+                    }
                 }
+                .listRowBackground(Rectangle().foregroundStyle(.clear))
             }
+            .scrollContentBackground(.hidden)
+            .background(
+                Color.gray.opacity(0.3)
+            )
             .navigationBarTitle("Expenses")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
