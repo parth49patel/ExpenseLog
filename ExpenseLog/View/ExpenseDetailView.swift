@@ -19,17 +19,17 @@ struct ExpenseDetailView: View {
     
     var body: some View {
         ScrollView {
-                Image(systemName: expense.category.icon)
-                    .resizable()
-                    .foregroundStyle(
-                        LinearGradient(
-                            stops: [Gradient.Stop(color: expense.category.background, location: 0.5), Gradient.Stop(color: .black, location: 1)],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
+            Image(systemName: expense.category.icon)
+                .resizable()
+                .foregroundStyle(
+                    LinearGradient(
+                        stops: [Gradient.Stop(color: expense.category.background, location: 0.5), Gradient.Stop(color: .gray, location: 1)],
+                        startPoint: .top,
+                        endPoint: .bottom
                     )
-                    .frame(width: 300, height: 300)
-                    .scaleEffect(x: 0.8, y: 0.8)
+                )
+                .frame(width: 300, height: 300)
+                .scaleEffect(x: 0.8, y: 0.8)
             
             VStack {
                 Text(expense.name)
@@ -39,28 +39,39 @@ struct ExpenseDetailView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         Text("Price:")
-                            .fontWeight(.semibold)
+                            .fontWeight(.medium)
                         Spacer()
                         Text(String(format: "$%.2f", expense.amount))
                     }
+                    Divider()
                     HStack {
                         Text("Date:")
-                            .fontWeight(.semibold)
+                            .fontWeight(.medium)
                         Spacer()
                         Text(expense.date, style: .date)
                     }
+                    Divider()
                     HStack {
                         Text("Category:")
-                            .fontWeight(.semibold)
+                            .fontWeight(.medium)
                         Spacer()
                         Text(expense.categoryRawValue.capitalized)
+                    }
+                    Divider()
+                    HStack {
+                        Text("Payment Method:")
+                            .fontWeight(.medium)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+                        Spacer()
+                        Text(expense.paymentTypeRawValue.capitalized)
                     }
                 }
             }
             .font(.system(size: 25))
             .padding(20)
             .frame(width: 350)
-            .background(.gray.opacity(0.3))
+            .background(expense.category.background.gradient.opacity(0.2))
             .clipShape(.rect(cornerRadius: 10))
         }
         Button {
@@ -70,6 +81,19 @@ struct ExpenseDetailView: View {
         } label: {
             DeleteButton(buttonName: "Delete", backgroundColor: .red, textColor: .white)
                 .textCase(.uppercase)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    showEditView.toggle()
+                } label: {
+                    Text("Edit")
+                }
+            }
+        }
+        .padding(.bottom)
+        .sheet(isPresented: $showEditView) {
+            EditView(expense: expense)
         }
     }
 }

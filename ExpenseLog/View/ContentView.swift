@@ -46,21 +46,29 @@ struct ContentView: View {
                 }
                 .listRowBackground(Rectangle().foregroundStyle(.clear))
             }
-            .scrollContentBackground(.hidden)
-            .background(
-                Color.gray.opacity(0.3)
-            )
             .navigationBarTitle("Expenses")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     NavigationLink(destination: AddExpenseView()) {
                         Image(systemName: "plus")
                     }
                 }
-//                ToolbarItem(placement: .topBarTrailing) {
-//                    Image(systemName: "gear")
-//                        .foregroundStyle(.blue)
-//                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button("All") {}
+                        Button("Food") {}
+                        Button("Transportation") {}
+                        Button("Entertainment") {}
+                        Button("Clothing") {}
+                        Button("Grocery") {}
+                        Button("Other") {}
+                        
+                    } label: {
+                        Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+                    }
+
+                }
             }
         }
     }

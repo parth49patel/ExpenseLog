@@ -65,11 +65,11 @@ struct AddExpenseView: View {
                     dismiss()
                 }
             }
-            ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel") {
-                    dismiss()
-                }
-            }
+//            ToolbarItem(placement: .cancellationAction) {
+//                Button("Cancel") {
+//                    dismiss()
+//                }
+//            }
         }
     }
     private func saveExpense() {

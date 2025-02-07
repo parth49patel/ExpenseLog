@@ -16,7 +16,7 @@ struct DeleteButton: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
             .frame(width: 160, height: 60)
-            .foregroundStyle(backgroundColor)
+            .foregroundStyle(backgroundColor.gradient)
             .overlay {
                 Text(buttonName)
                     .foregroundStyle(textColor)

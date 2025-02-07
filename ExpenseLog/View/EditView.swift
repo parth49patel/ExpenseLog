@@ -50,6 +50,24 @@ struct EditView: View {
                 }
             }
             .navigationTitle("Edit Expense")
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    Button {
+                        modelContext.insert(expense)
+                        dismiss()
+                    } label: {
+                        DeleteButton(buttonName: "SAVE", backgroundColor: .accentColor, textColor: .white)
+                    }
+                    .padding(.bottom)
+                }
+                ToolbarItem(placement: .destructiveAction) {
+                    Button {
+                       dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                }
+            }
         }
     }
 }
