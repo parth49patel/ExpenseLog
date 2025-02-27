@@ -15,7 +15,7 @@ struct AddExpenseView: View {
     @State var amount: Double = 0
     @State var date: Date = .now
     @State var category: ExpenseCategory = .other
-    @State var paymentType: PaymentType = .other
+    @State var paymentType: PaymentType = .cash
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -26,15 +26,18 @@ struct AddExpenseView: View {
             Form {
                 Section {
                     TextField("Title", text: $name)
+                        .scrollDismissesKeyboard(.immediately)
                     TextField("Add a note here...", text:
                                 Binding(get: { note ?? ""},
                                         set: { note = $0.isEmpty ? nil : $0}))
+                    .scrollDismissesKeyboard(.interactively)
                 }
                 Section {
                     HStack {
                         Text("Amount: ")
                         TextField("", value: $amount, format: .number)
                             .keyboardType(.decimalPad)
+                            .scrollDismissesKeyboard(.immediately)
                     }
                 }
                 Section {

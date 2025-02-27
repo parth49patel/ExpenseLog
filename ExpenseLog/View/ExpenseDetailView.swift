@@ -15,6 +15,7 @@ struct ExpenseDetailView: View {
     
     @Query var expenses: [ExpenseModel]
     let expense: ExpenseModel
+    
     @State private var showEditView: Bool = false
     
     var body: some View {

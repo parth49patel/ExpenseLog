@@ -59,7 +59,7 @@ enum PaymentType: String, CaseIterable, Codable {
     case amex = "American Express"
     case discover
     case cash
-    case other
+    //case other
 }
 
 @Model
@@ -82,7 +82,7 @@ final class ExpenseModel {
     
     var paymentType: PaymentType {
         get {
-            PaymentType(rawValue: paymentTypeRawValue) ?? .other
+            PaymentType(rawValue: paymentTypeRawValue) ?? .cash
         }
         set {
             paymentTypeRawValue = newValue.rawValue

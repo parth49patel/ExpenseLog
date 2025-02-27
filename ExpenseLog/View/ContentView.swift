@@ -13,10 +13,21 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \ExpenseModel.date, order: .forward) var expenses: [ExpenseModel]
     
+    @State private var filterByPayment: PaymentType? = nil
+    @State private var filterByCategory: ExpenseCategory? = nil
+    
+    private var filteredExpenses: [ExpenseModel] {
+            expenses.filter { expense in
+                let matchesPayment = filterByPayment == nil || expense.paymentType == filterByPayment
+                let matchesCategory = filterByCategory == nil || expense.category == filterByCategory
+                return matchesPayment && matchesCategory
+            }
+        }
+    
     var body: some View {
         NavigationStack {
             List {
-                ForEach(expenses) { expense in
+                ForEach(filteredExpenses) { expense in
                     NavigationLink(destination: ExpenseDetailView(expense: expense)) {
                         HStack {
                             VStack(alignment: .leading) {
@@ -24,11 +35,10 @@ struct ContentView: View {
                                     .font(.title)
                                     .textInputAutocapitalization(.words)
                                 HStack {
-                                    Text(expense.categoryRawValue.capitalized)
-                                        .font(.subheadline)
-                                        .foregroundStyle(expense.category.background)
                                     Image(systemName: expense.category.icon)
                                         .foregroundStyle(expense.category.background)
+                                    Text(expense.paymentType.rawValue.capitalized)
+                                        .font(.subheadline)
                                 }
                             }
                             Spacer()
@@ -36,18 +46,18 @@ struct ContentView: View {
                                 .font(.system(size: 25, weight: .semibold, design: .default))
                         }
                     }
-                    .swipeActions(edge: .trailing) {
-                        Button {
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button(role: .destructive) {
                             
                         } label: {
-                            
+                            Label("Delete", systemImage: "trash.fill")
                         }
                     }
                 }
                 .listRowBackground(Rectangle().foregroundStyle(.clear))
             }
             .navigationBarTitle("Expenses")
-            .navigationBarTitleDisplayMode(.inline)
+            //.navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     NavigationLink(destination: AddExpenseView()) {
@@ -56,18 +66,31 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        Button("All") {}
-                        Button("Food") {}
-                        Button("Transportation") {}
-                        Button("Entertainment") {}
-                        Button("Clothing") {}
-                        Button("Grocery") {}
-                        Button("Other") {}
+                        Menu("Filter by Payment Type") {
+                            Picker("Payment Type", selection: $filterByPayment) {
+                                Text("All").tag(nil as PaymentType?)
+                                ForEach(PaymentType.allCases, id: \.self) { paymentType in
+                                    Text(paymentType.rawValue.capitalized).tag(paymentType as PaymentType?)
+                                }
+                            }
+                        }
                         
+                        Menu("Filter by Category") {
+                            Picker("Category", selection: $filterByCategory) {
+                                Text("All").tag(nil as ExpenseCategory?)
+                                ForEach(ExpenseCategory.allCases, id: \.self) { category in
+                                    Text(category.rawValue.capitalized).tag(category as ExpenseCategory?)
+                                }
+                            }
+                        }
+                        
+                        Button("Clear Filters", role: .destructive) {
+                            filterByPayment = nil
+                            filterByCategory = nil
+                        }
                     } label: {
-                        Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
+                        Label("Filter", systemImage: "line.3.horizontal.decrease")
                     }
-
                 }
             }
         }
@@ -79,8 +102,3 @@ struct ContentView: View {
         .modelContainer(for: ExpenseModel.self)
     
 }
-//                .onDelete { indexSet in
-//                    indexSet.forEach {
-//                        modelContext.delete(expenses[$0])
-//                    }
-//                }
