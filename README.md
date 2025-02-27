@@ -9,13 +9,14 @@ A simple and efficient expense tracking app built using SwiftUI and SwiftData.
 - Expenses are displayed in a detailed view with relevant information.
 - Users can delete an expense from the detail view.
 
+### 🔍 Filtering Options
+- Users can filter expenses by **payment type** (e.g., Cash, Credit, Debit).
+- Users can filter expenses by **category** (e.g., Food, Travel, Shopping).
+- A **Clear Filters** option resets all applied filters.
+
 ### 💾 Data Persistence
 - Uses **SwiftData** to persist expense records, ensuring they are saved across app sessions.
-<!--
-### 🎨 Dynamic UI
-- Supports **light and dark mode** using `@Environment(\.colorScheme)`.
-- Uses system icons and colors for expense categories.
--->
+
 ### 🏗️ SwiftUI Integrations
 - `@Environment(\.dismiss)` is used to close views.
 - `@Query` is used to fetch expenses from the SwiftData model.
@@ -26,15 +27,15 @@ A simple and efficient expense tracking app built using SwiftUI and SwiftData.
 1. Click the ➕ button to open the **Add Expense** screen.
 2. Enter expense details (title, amount, category, payment type, and date) and save.
 3. Tap on an expense to view its **detailed information**.
-4. Click **Delete** to remove an expense permanently.
+4. Use the **Filter** button to filter by **payment type** or **category**.
+5. Click **Clear Filters** to reset all applied filters.
+6. Click **Delete** to remove an expense permanently.
 
 ## 🛠️ Technologies Used
 - **SwiftUI** for UI development
-- **SwiftData** for local storage and persistence
-- **MVVM architecture** for better code management
+- **SwiftData** for local storage and persistence  
 
-## 🚀 Future Enhancements
-- Add **sorting and filtering** for better organization.
+## 🚀 Future Enhancements  
 - Integrate **CloudKit** for multi-device support.
 - Include **charts and insights** for expense tracking.
 
