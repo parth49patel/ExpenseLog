@@ -20,16 +20,16 @@ struct ExpenseDetailView: View {
     
     var body: some View {
         ScrollView {
-            Image(systemName: expense.category.icon)
+            Image(expense.category.icon)
                 .resizable()
-                .foregroundStyle(
-                    LinearGradient(
-                        stops: [Gradient.Stop(color: expense.category.background, location: 0.5), Gradient.Stop(color: .gray, location: 1)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .frame(width: 300, height: 300)
+//                .foregroundStyle(
+//                    LinearGradient(
+//                        stops: [Gradient.Stop(color: expense.category.background, location: 0.5), Gradient.Stop(color: .gray, location: 1)],
+//                        startPoint: .top,
+//                        endPoint: .bottom
+//                    )
+//                )
+                .frame(width: 350, height: 350)
                 .scaleEffect(x: 0.8, y: 0.8)
             
             VStack {
@@ -75,14 +75,14 @@ struct ExpenseDetailView: View {
             .background(expense.category.background.gradient.opacity(0.2))
             .clipShape(.rect(cornerRadius: 10))
         }
-        Button {
-            modelContext.delete(expense)
-            try? modelContext.save()
-            dismiss()
-        } label: {
-            DeleteButton(buttonName: "Delete", backgroundColor: .red, textColor: .white)
-                .textCase(.uppercase)
-        }
+//        Button {
+//            modelContext.delete(expense)
+//            try? modelContext.save()
+//            dismiss()
+//        } label: {
+//            DeleteButton(buttonName: "Delete", backgroundColor: .red, textColor: .white)
+//                .textCase(.uppercase)
+//        }
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Button {
@@ -90,6 +90,16 @@ struct ExpenseDetailView: View {
                 } label: {
                     Text("Edit")
                 }
+            }
+            ToolbarItem(placement: .destructiveAction) {
+                Button(role: .destructive) {
+                    modelContext.delete(expense)
+                    try? modelContext.save()
+                    dismiss()
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+                
             }
         }
         .padding(.bottom)
@@ -100,6 +110,6 @@ struct ExpenseDetailView: View {
 }
 
 #Preview {
-    ExpenseDetailView(expense: ExpenseModel(name: "Milk", amount: 6.08, category: .food, paymentType: .visa, date: Date()))
+    ExpenseDetailView(expense: ExpenseModel(name: "Milk", amount: 6.08, category: .grocery, paymentType: .visa, date: Date()))
         .modelContainer(for: ExpenseModel.self)
 }

@@ -20,15 +20,20 @@ enum ExpenseCategory: String, CaseIterable, Codable {
     var icon: String {
         switch self {
             case .food:
-                return "fork.knife.circle.fill"
+                return "food"
+                //return "fork.knife.circle.fill"
             case .transportation:
-                return "car.circle.fill"
+                return "transportation"
+                //return "car.circle.fill"
             case .entertainment:
-                return "movieclapper.fill"
+                return "entertainment"
+                //return "movieclapper.fill"
             case .clothing:
-                return "hanger"
+                return "clothing"
+                //return "hanger"
             case .grocery:
-                return "cart.fill"
+                return "grocery"
+                //return "cart.fill"
             case .other:
                 return ""
         }
