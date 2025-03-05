@@ -18,8 +18,8 @@ struct HomeView: View {
     
     private var filteredExpenses: [ExpenseModel] {
             expenses.filter { expense in
-                let matchesPayment = filterByPayment == nil || expense.paymentType == filterByPayment
-                let matchesCategory = filterByCategory == nil || expense.category == filterByCategory
+                let matchesPayment = (filterByPayment == nil || expense.paymentType == filterByPayment)
+                let matchesCategory = (filterByCategory == nil || expense.category == filterByCategory)
                 return matchesPayment && matchesCategory
             }
         }
@@ -35,11 +35,8 @@ struct HomeView: View {
                                     .font(.title)
                                     .textInputAutocapitalization(.words)
                                 HStack {
-//                                    Image(expense.category.icon)
-//                                        .resizable()
-//                                        .scaledToFit()
-//                                        .frame(width: 20, height: 20)
-//                                        .foregroundStyle(expense.category.background)
+                                    Image(systemName: expense.category.icon)
+                                        .foregroundStyle(expense.category.background)
                                     Text(expense.paymentType.rawValue.capitalized)
                                         .font(.subheadline)
                                 }

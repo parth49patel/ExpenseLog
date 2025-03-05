@@ -6,33 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: \ExpenseModel.date, order: .forward) var expenses: [ExpenseModel]
-    
-    @State private var filterByPayment: PaymentType? = nil
-    @State private var filterByCategory: ExpenseCategory? = nil
-    
-    private var filteredExpenses: [ExpenseModel] {
-            expenses.filter { expense in
-                let matchesPayment = filterByPayment == nil || expense.paymentType == filterByPayment
-                let matchesCategory = filterByCategory == nil || expense.category == filterByCategory
-                return matchesPayment && matchesCategory
-            }
-        }
     
     var body: some View {
         TabView {
             HomeView()
                 .tabItem {
-                    Image(systemName: "dollarsign.circle.fill")
+                    Image(systemName: "list.bullet.rectangle.fill")
                     Text("Expenses")
                 }
             SummaryView()
                 .tabItem {
-                    Image(systemName: "chart.pie.fill")
+                    Image(systemName: "dollarsign.gauge.chart.lefthalf.righthalf")
                     Text("Summary")
                 }
             ProfileView()
