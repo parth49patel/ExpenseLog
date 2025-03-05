@@ -20,16 +20,16 @@ struct ExpenseDetailView: View {
     
     var body: some View {
         ScrollView {
-            Image(expense.category.icon)
+            Image(systemName: expense.category.icon)
                 .resizable()
-//                .foregroundStyle(
-//                    LinearGradient(
-//                        stops: [Gradient.Stop(color: expense.category.background, location: 0.5), Gradient.Stop(color: .gray, location: 1)],
-//                        startPoint: .top,
-//                        endPoint: .bottom
-//                    )
-//                )
-                .frame(width: 350, height: 350)
+                .foregroundStyle(
+                    LinearGradient(
+                        stops: [Gradient.Stop(color: expense.category.background, location: 0.5), Gradient.Stop(color: .gray, location: 1)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+                .frame(width: 300, height: 300)
                 .scaleEffect(x: 0.8, y: 0.8)
             
             VStack {
