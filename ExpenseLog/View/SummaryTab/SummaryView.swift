@@ -30,6 +30,13 @@ struct SummaryView: View {
     @Query var expenses: [ExpenseModel]
     @State private var selectedChartType: ChartType = .bar
     
+    var totalExpenses: Double {
+        expenses.reduce(0) { $0 + $1.amount }
+    }
+    var avgExpense: Double {
+        guard !expenses.isEmpty else { return 0 }
+        return totalExpenses / Double(expenses.count)
+    }
     var groupedExpenses: [(category: ExpenseCategory, total: Double)] {
         expenses.reduce(into: [:]) { result, expense in
             result[expense.category, default: 0] += expense.amount
@@ -50,6 +57,17 @@ struct SummaryView: View {
                             //                        LineChartView(groupedExpenses: groupedExpenses)
                     }
                 }
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("Total Expense: $\(String(format: "%.2f", totalExpenses))")
+                        .font(.system(size: 16, weight: .bold, design: .monospaced))
+                    Text("Average Expense: $\(String(format: "%.2f", avgExpense))")
+                        .font(.system(size: 16, weight: .bold, design: .monospaced))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(.regularMaterial)
+                .clipShape(.rect(cornerRadius: 10))
+                .padding()
             }
             .navigationTitle(Text("Summary"))
             .toolbar {
@@ -89,7 +107,7 @@ struct BarChartView: View {
                             .imageScale(.large)
                             .foregroundStyle(data.category.background)
                         Text("$\(String(format:"%.2f", data.total))")
-                            .font(.caption)
+                            .font(.headline)
                     }
                 }
             }
