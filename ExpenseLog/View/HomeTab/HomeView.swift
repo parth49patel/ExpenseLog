@@ -11,10 +11,11 @@ import SwiftData
 struct HomeView: View {
     
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \ExpenseModel.date, order: .forward) var expenses: [ExpenseModel]
+    @Query(sort: \ExpenseModel.date, order: .reverse) var expenses: [ExpenseModel]
     
     @State private var filterByPayment: PaymentType? = nil
     @State private var filterByCategory: ExpenseCategory? = nil
+    @State private var showAddExpenseView: Bool = false
     
     private var filteredExpenses: [ExpenseModel] {
             expenses.filter { expense in
@@ -31,21 +32,20 @@ struct HomeView: View {
                     ForEach(filteredExpenses) { expense in
                         NavigationLink(destination: ExpenseDetailView(expense: expense)) {
                             ListView(expense: expense)
-                                .padding(.horizontal, 7)
-                                //.padding(.vertical, -1)
-                        }
-                        .onTapGesture {
-                            
+                                .padding(.horizontal, 10)
                         }
                         .buttonStyle(.plain)
                     }
                 }
             }
             .navigationBarTitle("Expenses")
-            //.navigationBarTitleDisplayMode(.inline)
+            
+            //MARK: Toolbar
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink(destination: AddExpenseView()) {
+                    Button {
+                        showAddExpenseView.toggle()
+                    } label: {
                         Image(systemName: "plus")
                     }
                 }
@@ -64,7 +64,7 @@ struct HomeView: View {
                             Picker("Category", selection: $filterByCategory) {
                                 Text("All").tag(nil as ExpenseCategory?)
                                 ForEach(ExpenseCategory.allCases, id: \.self) { category in
-                                    Text(category.rawValue.capitalized).tag(category as ExpenseCategory?)
+                                    Label(category.rawValue.capitalized, systemImage: category.icon)
                                 }
                             }
                         }
@@ -77,6 +77,14 @@ struct HomeView: View {
                         Label("Filter", systemImage: "line.3.horizontal.decrease")
                     }
                 }
+            }
+            //MARK: Sheets
+            .sheet(isPresented: $showAddExpenseView) {
+                AddExpenseView()
+                    //.presentationDetents([.fraction(0.8)])
+                    .presentationBackgroundInteraction(.disabled)
+                    .presentationContentInteraction(.scrolls)
+                    .interactiveDismissDisabled(true)
             }
         }
     }

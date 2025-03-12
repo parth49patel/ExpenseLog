@@ -6,13 +6,39 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProfileView: View {
+    
+    @Environment(\.modelContext) private var modelContext
+    @Query var profile: [ProfileModel]
+    @State private var showEditProfileView: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack {
+                if let userProfile = profile.first {
+                    Text("Name: \(userProfile.name)")
+                    Text("Email: \(userProfile.email)")
+                }
+
+            }
+            //.navigationTitle(Text("\(profile.name)"))
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Edit") {
+                        showEditProfileView.toggle()
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showEditProfileView) {
+            EditProfileView()
+        }
     }
 }
 
 #Preview {
     ProfileView()
+        .modelContainer(for: ProfileModel.self)
 }

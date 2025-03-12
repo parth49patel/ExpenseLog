@@ -28,9 +28,9 @@ enum ExpenseCategory: String, CaseIterable, Codable {
             case .clothing:
                 return "tshirt.circle.fill"
             case .grocery:
-                return "cart.fill"
+                return "cart.circle.fill"
             case .other:
-                return ""
+                return "giftcard.fill"
         }
     }
     
@@ -43,11 +43,11 @@ enum ExpenseCategory: String, CaseIterable, Codable {
             case .entertainment:
                 return .blue
             case .clothing:
-                return .brown
+                return .indigo
             case .grocery:
                 return .yellow
             case .other:
-                return .gray
+                return .brown
         }
     }
 }
