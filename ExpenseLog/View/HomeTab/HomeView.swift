@@ -95,33 +95,3 @@ struct HomeView: View {
         .modelContainer(for: ExpenseModel.self)
 }
 
-//List {
-//    ForEach(filteredExpenses) { expense in
-//        NavigationLink(destination: ExpenseDetailView(expense: expense)) {
-//            HStack {
-//                VStack(alignment: .leading) {
-//                    Text(expense.name)
-//                        .font(.title)
-//                        .textInputAutocapitalization(.words)
-//                    HStack {
-//                        Image(systemName: expense.category.icon)
-//                            .foregroundStyle(expense.category.background)
-//                        Text(expense.paymentType.rawValue.capitalized)
-//                            .font(.subheadline)
-//                    }
-//                }
-//                Spacer()
-//                Text(expense.amount.description)
-//                    .font(.system(size: 25, weight: .semibold, design: .default))
-//            }
-//        }
-//        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-//            Button(role: .destructive) {
-//                
-//            } label: {
-//                Label("Delete", systemImage: "trash.fill")
-//            }
-//        }
-//    }
-//    .listRowBackground(Rectangle().foregroundStyle(.clear))
-//}

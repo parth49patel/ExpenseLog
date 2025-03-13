@@ -14,20 +14,16 @@ struct ContentView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Image(systemName: "list.bullet.rectangle.fill")
+                    Image(systemName: "dollarsign.circle.fill")
                     Text("Expenses")
                 }
             SummaryView()
                 .tabItem {
-                    Image(systemName: "dollarsign.gauge.chart.lefthalf.righthalf")
+                    Image(systemName: "chart.bar.xaxis")
                     Text("Summary")
                 }
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person.circle")
-                    Text("Profile")
-                }
         }
+        .tabViewStyle(.sidebarAdaptable)
     }
 }
 

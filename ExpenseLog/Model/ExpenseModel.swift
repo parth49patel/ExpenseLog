@@ -41,7 +41,7 @@ enum ExpenseCategory: String, CaseIterable, Codable {
             case .transportation:
                 return .green
             case .entertainment:
-                return .blue
+                return .teal
             case .clothing:
                 return .indigo
             case .grocery:
@@ -59,7 +59,6 @@ enum PaymentType: String, CaseIterable, Codable {
     case amex = "American Express"
     case discover
     case cash
-    //case other
 }
 
 @Model

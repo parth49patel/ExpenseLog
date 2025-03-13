@@ -35,54 +35,55 @@ struct ExpenseDetailView: View {
             VStack {
                 Text(expense.name)
                     .font(.system(size: 50))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
                     .padding(.bottom)
                 
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         Text("Price:")
-                            .fontWeight(.medium)
+                            .fontWeight(.regular)
                         Spacer()
                         Text(String(format: "$%.2f", expense.amount))
+                            .fontWeight(.bold)
                     }
                     Divider()
                     HStack {
                         Text("Date:")
-                            .fontWeight(.medium)
+                            .fontWeight(.regular)
                         Spacer()
                         Text(expense.date, style: .date)
+                            .fontWeight(.bold)
                     }
                     Divider()
                     HStack {
                         Text("Category:")
-                            .fontWeight(.medium)
+                            .fontWeight(.regular)
                         Spacer()
                         Text(expense.categoryRawValue.capitalized)
+                            .fontWeight(.bold)
                     }
                     Divider()
                     HStack {
                         Text("Payment Method:")
-                            .fontWeight(.medium)
-                            .lineLimit(1)
+                            .fontWeight(.regular)
                             .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                            
                         Spacer()
                         Text(expense.paymentTypeRawValue.capitalized)
+                            .fontWeight(.bold)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
                     }
                 }
             }
-            .font(.system(size: 25))
+            //.font(.system(size: 25))
             .padding(20)
             .frame(width: 350)
             .background(expense.category.background.gradient.opacity(0.2))
             .clipShape(.rect(cornerRadius: 10))
         }
-//        Button {
-//            modelContext.delete(expense)
-//            try? modelContext.save()
-//            dismiss()
-//        } label: {
-//            DeleteButton(buttonName: "Delete", backgroundColor: .red, textColor: .white)
-//                .textCase(.uppercase)
-//        }
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Button {
@@ -110,6 +111,6 @@ struct ExpenseDetailView: View {
 }
 
 #Preview {
-    ExpenseDetailView(expense: ExpenseModel(name: "Milk", amount: 6.08, category: .grocery, paymentType: .visa, date: Date()))
+    ExpenseDetailView(expense: ExpenseModel(name: "American Eagle", amount: 6.08, category: .clothing, paymentType: .amex, date: Date()))
         .modelContainer(for: ExpenseModel.self)
 }
