@@ -39,8 +39,18 @@ A simple and efficient expense tracking app built using SwiftUI and SwiftData.
 - Integrate **CloudKit** for multi-device support.
 - Include **charts and insights** for expense tracking.
 
-## 📷 Screenshots
-(Coming Soon)
+## 📷 Screenshots  
+### Expense List  
+<img src="ExpenseLog/Assets.xcassets/HomeView.imageset/HomeView.png" alt="Expense List" width="300">
+
+### Summary View  
+<img src="ExpenseLog/Assets.xcassets/SummaryView.imageset/SummaryView.png" alt="Summary View" width="300">
+
+### Expense Detail View  
+<img src="ExpenseLog/Assets.xcassets/ExpenseDetailView.imageset/ExpenseDetailView.png" alt="Expense Detail View" width="300">
+
+### Add Expense View  
+<img src="ExpenseLog/Assets.xcassets/AddExpenseView.imageset/AddExpenseView.png" alt="Add Expense View" width="300">  
 
 ## 📥 Installation
 
