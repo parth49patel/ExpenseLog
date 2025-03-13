@@ -18,12 +18,12 @@ struct HomeView: View {
     @State private var showAddExpenseView: Bool = false
     
     private var filteredExpenses: [ExpenseModel] {
-            expenses.filter { expense in
-                let matchesPayment = (filterByPayment == nil || expense.paymentType == filterByPayment)
-                let matchesCategory = (filterByCategory == nil || expense.category == filterByCategory)
-                return matchesPayment && matchesCategory
-            }
+        expenses.filter { expense in
+            let matchesPayment = filterByPayment == nil || expense.paymentType == filterByPayment
+            let matchesCategory = filterByCategory == nil || expense.category == filterByCategory
+            return matchesPayment && matchesCategory
         }
+    }
     
     var body: some View {
         NavigationStack {
@@ -64,7 +64,8 @@ struct HomeView: View {
                             Picker("Category", selection: $filterByCategory) {
                                 Text("All").tag(nil as ExpenseCategory?)
                                 ForEach(ExpenseCategory.allCases, id: \.self) { category in
-                                    Label(category.rawValue.capitalized, systemImage: category.icon)
+                                    Text(category.rawValue.capitalized)
+                                        .tag(category as ExpenseCategory?)
                                 }
                             }
                         }
@@ -81,7 +82,7 @@ struct HomeView: View {
             //MARK: Sheets
             .sheet(isPresented: $showAddExpenseView) {
                 AddExpenseView()
-                    //.presentationDetents([.fraction(0.8)])
+                //.presentationDetents([.fraction(0.8)])
                     .presentationBackgroundInteraction(.disabled)
                     .presentationContentInteraction(.scrolls)
                     .interactiveDismissDisabled(true)
