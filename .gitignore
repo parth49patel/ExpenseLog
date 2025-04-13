@@ -1,0 +1,50 @@
+# Xcode
+*.xcworkspace
+*.xcuserstate
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Swift Package Manager
+.swiftpm
+Package.resolved
+
+# Build and Derived Data
+build/
+DerivedData/
+
+# macOS
+.DS_Store
+
+# Personal files
+*.playlist
+
+# Ignore all .plist files
+*.plist
+
+# Firebase / Secrets
+GoogleService-Info.plist
+Secrets.plist
+
+# Configuration files
+*.xcconfig
+*.env
+*.config
+*.yml
+*.yaml
+*.json
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Other
+.idea/
+*.iml
