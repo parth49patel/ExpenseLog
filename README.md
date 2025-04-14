@@ -22,7 +22,7 @@
   An option to permanently delete the user's account, along with all related data (expenses, profile, etc.) from the app and Firestore.
 
 - 🎨 **Clean, Responsive UI**  
-  Designed using SwiftUI, the app ensures a modern and intuitive user interface, with smooth transitions and a responsive layout across all devices (iPhone, iPad, Mac).
+  Designed using SwiftUI, the app ensures a modern and intuitive user interface, with smooth transitions and a responsive layout optimized for iPhone devices.
 
 - 🔊 **Haptic Feedback**  
   Provide haptic feedback throughout the app for an enhanced user experience, especially when interacting with buttons or performing critical actions.
@@ -53,7 +53,67 @@
 - **Swift Package Manager**  
   Dependency management is handled by Swift Package Manager (SPM), ensuring smooth integration of external libraries like Firebase and other utilities.
 
----
+---  
+## 📷 Screenshots  
+
+<h3>🔧 App UI</h3>
+<table>
+  <tr>
+    <td align="center">
+      <strong>Sign In</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/SignIn.imageset/SignIn.png" alt="Sign In View" width="250">
+    </td>
+    <td align="center">
+      <strong>Expense List</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/ExpenseList.imageset/ExpenseList.png" alt="Expense List View" width="250">
+    </td>
+      <td align="center">
+      <strong>Detail View</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/ExpenseDetailView.imageset/ExpenseDetailView.png" alt="Detail View" width="250">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Add Expense</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/AddView.imageset/AddView.png" alt="Add View" width="250">
+    </td>
+    <td align="center">
+      <strong>Category Chart</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/CategoryChart.imageset/CategoryChart.png" alt="Category Chart" width="250">
+    </td>
+    <td align="center">
+      <strong>Payment Chart</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/PaymentChart.imageset/PaymentChart.png" alt="Payment Chart" width="250">
+    </td>
+  </tr>
+</table>
+
+<h3>🔧 Features UI</h3>
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>Filter</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/Filter.imageset/Filter.png" alt="Filter" width="250">
+    </td>
+    <td align="center">
+      <strong>Alert</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/Alert.imageset/Alert.png" alt="Alert" width="250">
+    </td>
+  </tr>
+    <tr>
+      <td align="center">
+      <strong>Settings</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/Settings.imageset/Settings.png" alt="Settings" width="250">
+    </td>
+    <td align="center">
+      <strong>Confirmation Dialog</strong><br/>
+      <img src="ExpenseLog/Assets.xcassets/ConfirmationDialog.imageset/ConfirmationDialog.png" alt="Confirmation Dialog" width="250">
+    </td>
+    </tr>
+</table>
+
+---  
 
 ## 📦 Installation
 
